@@ -1,0 +1,53 @@
+mat-card {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 1rem 1.75rem;
+  cursor: pointer;
+}
+
+mat-card:hover {
+  filter: brightness(0.98);
+  transition: all 0.1s;
+}
+
+mat-form-field {
+  position: relative;
+  top: 0.5rem;
+}
+.example-full-width {
+  width: 100%;
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.quantity-input {
+  flex-grow: 0;
+  flex-basis: 100px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.2rem;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.buttons > button {
+  margin-left: 1rem;
+}
+.buttons:hover {
+  pointer-events: none;
+}
+
+.purchased {
+  transition: all 0.2s;
+  text-decoration-line: line-through;
+  color: gray;
+}

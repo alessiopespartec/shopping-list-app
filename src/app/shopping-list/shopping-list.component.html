@@ -1,0 +1,71 @@
+<mat-card>
+  <form class="example-form">
+    <div class="form-row">
+      <!-- Name field -->
+      <mat-form-field class="example-input">
+        <mat-label>Add item</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Item name"
+          [(ngModel)]="itemName"
+          (keydown.enter)="addItem()"
+          name="itemName"
+        />
+      </mat-form-field>
+
+      <!-- Quantity field -->
+      <mat-form-field class="example-input quantity-input">
+        <mat-label>Quantity</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Quantity"
+          [(ngModel)]="itemQuantity"
+          (keydown.enter)="addItem()"
+          name="itemQuantity"
+        />
+      </mat-form-field>
+
+      <!-- Botton 'Add' -->
+      <mat-icon matSuffix (click)="addItem()">add</mat-icon>
+    </div>
+  </form>
+</mat-card>
+
+<mat-divider align="center"></mat-divider>
+
+<mat-card>
+  <mat-card-subtitle *ngIf="!message" align="center">
+    Purchase all items! ({{ itemPurchasedCount }}/{{
+      data.length
+    }})</mat-card-subtitle
+  >
+  <mat-card-subtitle *ngIf="message" align="center"
+    >{{ message }} ({{ itemPurchasedCount }}/{{
+      data.length
+    }})</mat-card-subtitle
+  >
+</mat-card>
+
+<mat-card
+  *ngFor="let item of data; index as index; count as count"
+  (click)="purchaseItem(index)"
+>
+  <div class="header">
+    <div class="main">
+      <mat-card-title [ngClass]="item.isPurchased ? 'purchased' : null">{{
+        item.name
+      }}</mat-card-title>
+      <mat-card-subtitle>Quantity: {{ item.quantity }}</mat-card-subtitle>
+    </div>
+    <div class="buttons">
+      <button mat-fab color="warn" aria-label="Delete icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-fab color="primary" aria-label="Edit icon">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>
