@@ -11,7 +11,9 @@ interface ShoppingItem {
   templateUrl: './shopping-list.component.html',
   styleUrl: './shopping-list.component.css',
 })
+
 export class ShoppingListComponent {
+
   data: ShoppingItem[] = [
     { name: 'Tomato', quantity: 3, isPurchased: true },
     { name: 'Apple', quantity: 6, isPurchased: false },
@@ -93,5 +95,14 @@ export class ShoppingListComponent {
     this.changePurchasedMessage();
   }
 
-  // TODO: Implement DELETE and EDIT button
+  deleteItem(i: number) {
+    var result = confirm( "Do you want to remove '" + this.data[i].name + "'?" );
+
+    if (result) {
+      this.data.splice(i, 1);
+      console.log("Deleting ", this.data[i].name);
+  
+      this.changePurchasedMessage();
+    }
+  }
 }

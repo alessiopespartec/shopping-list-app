@@ -16,6 +16,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 
 @NgModule({
   declarations: [AppComponent, ShoppingListComponent],
@@ -30,6 +31,8 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    MatCheckboxModule,
+    MatButtonModule,
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

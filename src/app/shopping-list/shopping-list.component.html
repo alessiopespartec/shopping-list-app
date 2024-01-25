@@ -35,36 +35,61 @@
 
 <mat-divider align="center"></mat-divider>
 
-<mat-card>
-  <mat-card-subtitle *ngIf="!message" align="center">
+<mat-card class="message-box">
+  <mat-card-subtitle *ngIf="data.length == 0">
+    No data to display!
+  </mat-card-subtitle>
+  <mat-card-subtitle *ngIf="!message && data.length > 0">
     Purchase all items! ({{ itemPurchasedCount }}/{{
       data.length
     }})</mat-card-subtitle
   >
-  <mat-card-subtitle *ngIf="message" align="center"
+  <mat-card-subtitle *ngIf="message && data.length > 0"
     >{{ message }} ({{ itemPurchasedCount }}/{{
       data.length
     }})</mat-card-subtitle
   >
 </mat-card>
 
-<mat-card
-  *ngFor="let item of data; index as index; count as count"
-  (click)="purchaseItem(index)"
->
+<mat-card *ngFor="let item of data; index as index; count as count">
   <div class="header">
+    <mat-checkbox
+      [checked]="item.isPurchased"
+      (click)="purchaseItem(index)"
+    ></mat-checkbox>
     <div class="main">
-      <mat-card-title [ngClass]="item.isPurchased ? 'purchased' : null">{{
-        item.name
-      }}</mat-card-title>
-      <mat-card-subtitle>Quantity: {{ item.quantity }}</mat-card-subtitle>
+      <mat-card-title>
+        <input
+          type="text"
+          matInput
+          placeholder="Item name"
+          [(ngModel)]="data[index].name"
+          (keydown.enter)="addItem()"
+          name="itemName"
+          class="edit-input"
+          [ngClass]="item.isPurchased ? 'purchased' : null"
+        />
+      </mat-card-title>
+      <mat-card-subtitle>Quantity: 
+        <input
+          type="number"
+          matInput
+          placeholder="Quantity"
+          [(ngModel)]="data[index].quantity"
+          (keydown.enter)="addItem()"
+          name="itemQuantity"
+          class="edit-input-quantity"
+        />
+      </mat-card-subtitle>
     </div>
     <div class="buttons">
-      <button mat-fab color="warn" aria-label="Delete icon">
+      <button
+        mat-fab
+        color="warn"
+        aria-label="Delete icon"
+        (click)="deleteItem(index)"
+      >
         <mat-icon>delete</mat-icon>
-      </button>
-      <button mat-fab color="primary" aria-label="Edit icon">
-        <mat-icon>edit</mat-icon>
       </button>
     </div>
   </div>
